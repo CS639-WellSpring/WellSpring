@@ -6,7 +6,7 @@ WellSpring is an Android app designed to promote wellness and well-being among s
 
 | Zhuowen Yan | Zaid | Akbar |
 |:-----------:|:----:|:-----:|
-| ![Zhuowen Yan](https://github.com/CS639-WellSpring/WellSpring/blob/main/img-folder/zhuowen.jpg) | ![Zaid](link_to_image) | ![Akbar](link_to_image) |
+| <img src="https://github.com/CS639-WellSpring/WellSpring/blob/main/img-folder/zhuowen.jpg" width = "300" height = "300" alt="Zhuowen" align=center /> | ![Zaid](link_to_image) | ![Akbar](link_to_image) |
 
 ## Idea Proposal
 For more details on the initial project idea, please refer to our [Idea Proposal](https://docs.google.com/document/d/16VK8QEO1k3YN_DWR8LQGigHSgqhZ_y5vnebZW-SnGIw/edit?usp=drive_link).
