@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_dividing.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\dividing.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_journal_addphotos.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\journal_addphotos.png"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-44:/drawable_photo.png.flat",
+        "source": "com.example.wellspring.app-main-46:/drawable/photo.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_journal_addmood.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\journal_addmood.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_more.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\more.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_backbutton.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\backbutton.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_ic_launcher.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_logo_wellspring.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\logo_wellspring.png"
+    },
+    {
+        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_google.png.flat",
+        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\google.png"
+    }
+]
