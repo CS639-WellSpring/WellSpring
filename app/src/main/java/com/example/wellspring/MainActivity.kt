@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                        SignInView()
+                        SignInScreen()
                     }
                 }
             }
@@ -38,6 +38,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     AppTheme {
-        SignInView()
+        SignInScreen()
     }
 }
