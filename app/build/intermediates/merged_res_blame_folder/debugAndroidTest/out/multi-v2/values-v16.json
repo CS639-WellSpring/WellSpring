@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.wellspring.test.app-mergeDebugAndroidTestResources-32:/values-v16/values-v16.xml",
+            "outputFile": "com.example.wellspring.test.app-mergeDebugAndroidTestResources-36:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\54d2751d2b9e48bb8e0175fa03bfc140\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\c8d3dbbcc37b7255cac4e72d4b5de44b\\transformed\\core-1.10.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

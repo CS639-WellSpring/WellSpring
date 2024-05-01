@@ -49,12 +49,12 @@ fun SignInScreen(navController: NavController) {
         Headline()
         SupportingText()
         Spacer(Modifier.height(32.dp))
-        SignInEmailInput()
+        EmailInput()
         Spacer(Modifier.height(16.dp))
-        SignInPasswordInput()
+        PasswordInput()
         Spacer(Modifier.height(24.dp))
-        SignInButton()
-        SignInSignUpButton {navController.navigate("signup") }
+        SignInButton {navController.navigate("mood")}
+        SignUpButton {navController.navigate("signup")}
         DividerWithText()
         SignInWithGoogleButton()
     }
@@ -83,7 +83,7 @@ fun SupportingText() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignInEmailInput() {
+fun EmailInput() {
     OutlinedTextField(
         value = "",
         onValueChange = {},
@@ -96,7 +96,7 @@ fun SignInEmailInput() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignInPasswordInput() {
+fun PasswordInput() {
     OutlinedTextField(
         value = "",
         onValueChange = {},
@@ -110,9 +110,9 @@ fun SignInPasswordInput() {
 }
 
 @Composable
-fun SignInButton() {
+fun SignInButton(onSignInClick: () -> Unit) {
     Button(
-        onClick = { /* Handle sign in */ },
+        onClick = onSignInClick,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 42.dp)
@@ -122,7 +122,7 @@ fun SignInButton() {
 }
 
 @Composable
-fun SignInSignUpButton(onSignUpClick: () -> Unit) {
+fun SignUpButton(onSignUpClick: () -> Unit) {
     Button(
         onClick = onSignUpClick,
         modifier = Modifier

@@ -12,95 +12,69 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
-import com.example.wellspring.ui.theme.AppTheme
-
+import com.example.wellspring.ui.data.EventData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventsScreen() {
-    AppTheme {
+fun EventsScreen(navController: NavHostController) {
+    val scrollState = rememberLazyListState()
+    val shouldShowAppBar = remember { mutableStateOf(true) }
+    LaunchedEffect(scrollState.firstVisibleItemIndex, scrollState.firstVisibleItemScrollOffset) {
+        val showTopBar = scrollState.firstVisibleItemScrollOffset <= 0 && scrollState.firstVisibleItemIndex == 0
+        shouldShowAppBar.value = showTopBar
+    }
 
-        Scaffold(
-            topBar = {
-                LargeTopAppBar(
-                    title = { Text("Events", style = MaterialTheme.typography.headlineLarge) },
+    Scaffold(
+        topBar = {
+            if (shouldShowAppBar.value) {
+                MediumTopAppBar(
+                    title = { Text("Events") },
                     actions = {
-                        IconButton(onClick = { /* TODO: Handle profile click */ }) {
+                        IconButton(onClick = { /* Handle profile click */ }) {
                             Icon(Icons.Filled.AccountCircle, contentDescription = "Profile")
                         }
                     }
                 )
-            },
-            bottomBar = {
-                BottomNavigationBar()
             }
-        ) { innerPadding ->
-            EventsList(Modifier.padding(innerPadding))
-        }
+        },
+        bottomBar = { EventsBottomNavigationBar(navController) }
+    ) { innerPadding ->
+        EventsList(events = EventData.events, modifier = Modifier.padding(innerPadding))
     }
 }
 
 @Composable
-fun EventsList(modifier: Modifier = Modifier) {
-    val events = listOf(
-        EventItem(
-            "Slime Making",
-            "13:00 - 14:00",
-            "Saturday, April 20",
-            "15 Beekman St, 25th floor",
-            R.drawable.image01),
-        EventItem(
-            "End of Semester Awards",
-            "18:00 - 20:00",
-            "Saturday, April 20",
-            "15 Beekman St, Aniello Bianco Room",
-            R.drawable.image02),
-        EventItem(
-            "The Collective: Spring Showcase",
-            "20:00 - 22:00",
-            "Saturday, April 20",
-            "KnJ Theatre",
-            R.drawable.image03),
-        EventItem(
-            "P.A.C.E. Board Food Trucks",
-            "12:00 - 14:00",
-            "Monday, April 22",
-            "1 Pace Plaza Outside",
-            R.drawable.image04),
-        EventItem(
-            "Interview Lab Workshop",
-            "12:10 - 13:10",
-            "Monday, April 22",
-            "Online",
-            R.drawable.image05)
-    )
-
+fun EventsList(events: List<EventItem>, modifier: Modifier) {
     LazyColumn(
-        modifier = modifier
-            .padding(horizontal = 16.dp)  // Apply horizontal padding here
-            .fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(16.dp) // This adds spacing between items
+        modifier = modifier.padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(events) { event ->
             EventRow(event)
@@ -113,29 +87,27 @@ fun EventRow(event: EventItem) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(108.dp), // Fixed height for the container
+            .height(108.dp),
         shape = RoundedCornerShape(32.dp),
         color = MaterialTheme.colorScheme.surfaceVariant
     ) {
         Row(
-            modifier = Modifier.fillMaxHeight(), // Ensure the Row fills the Surface height
+            modifier = Modifier.fillMaxHeight(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(id = event.imageResId),
                 contentDescription = "Event Photo",
                 modifier = Modifier
-                    .width(108.dp) // Make the image square and equal to the height of the container
-                    .fillMaxHeight() // Image fills the vertical space of the container
+                    .width(108.dp)
+                    .fillMaxHeight()
             )
             Spacer(modifier = Modifier.width(16.dp))
-            Column(
-                modifier = Modifier.padding(vertical = 16.dp) // Apply vertical padding only here for text
-            ) {
+            Column {
                 Text(
                     text = event.title,
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
                     text = event.time,
@@ -159,26 +131,26 @@ fun EventRow(event: EventItem) {
 
 
 @Composable
-fun BottomNavigationBar() {
+fun EventsBottomNavigationBar(navController: NavHostController) {
     val context = LocalContext.current
     NavigationBar {
         NavigationBarItem(
             icon = { Icon(painterResource(id = R.drawable.ic_events_filled), contentDescription = "Events") },
             label = { Text("Events") },
             selected = true,
-            onClick = { /* Handle Events click */ }
+            onClick = { }
         )
         NavigationBarItem(
             icon = { Icon(painterResource(id = R.drawable.ic_mood_outline), contentDescription = "Mood") },
             label = { Text("Mood") },
             selected = false,
-            onClick = { /* Handle Mood click */ }
+            onClick = { navController.navigate("mood") }
         )
         NavigationBarItem(
             icon = { Icon(painterResource(id = R.drawable.ic_chart_outline), contentDescription = "Chart") },
             label = { Text("Chart") },
             selected = false,
-            onClick = { /* Handle Chart click */ }
+            onClick = { navController.navigate("chart") }
         )
     }
 }
@@ -188,13 +160,12 @@ data class EventItem(
     val time: String,
     val date: String,
     val location: String,
-    val imageResId: Int  // Drawable resource ID for the event image
+    val imageResId: Int
 )
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewEventsScreen() {
-    AppTheme { // Wrap in the app theme to apply styles
-        EventsScreen()
-    }
+    val navController = rememberNavController()
+    EventsScreen(navController)
 }

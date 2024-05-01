@@ -67,7 +67,7 @@ fun SignUpScreen(navController: NavController) {
             SignUpEmailInput()
             SignUpPasswordInput(label = "Password")
             SignUpPasswordInput(label = "Confirm Password")
-            SignUpButton()
+            SignUpSubmitButton()
             DividerWithText("OR")
             SignUpWithGoogleButton()
         }
@@ -106,7 +106,7 @@ fun SignUpPasswordInput(label: String) {
 }
 
 @Composable
-fun SignUpButton() {
+fun SignUpSubmitButton() {
     Button(
         onClick = { /* Handle sign up */ },
         modifier = Modifier
