@@ -18,6 +18,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,15 +29,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
 import com.example.wellspring.ui.data.MoodData
 import com.example.wellspring.ui.theme.AppTheme
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.example.wellspring.ui.theme.bar
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,39 +59,61 @@ fun ChartScreen(navController: NavHostController) {
             }
         ) { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
-                LineChartComposable()
+                BarChartComposable()
                 Spacer(modifier = Modifier.height(16.dp))
-                DoughnutChartComposable()
+                /*DoughnutChartComposable()*/
             }
         }
     }
 }
 
 @Composable
-fun LineChartComposable() {
-    AndroidView(factory = { context ->
-        LineChart(context).apply {
-            val entries = MoodData.monthlyMoodRecords.map { record ->
-                Entry(record.date.dayOfMonth.toFloat(), record.mood.ordinal.toFloat())
+fun BarChartComposable() {
+    AndroidView(
+        modifier = Modifier.fillMaxWidth().height(250.dp),
+        factory = { context ->
+            BarChart(context).apply {
+                val entries = MoodData.monthlyMoodRecords.map { record ->
+                    BarEntry(record.date.dayOfMonth.toFloat(), record.moodLevel.toFloat())
+                }
+                val dataSet = BarDataSet(entries, "").apply {
+                    color = bar.toArgb()
+                    valueTextSize = 0f
+                    form = Legend.LegendForm.CIRCLE
+
+                }
+                data = BarData(dataSet)
+                description.isEnabled = false
+                legend.isEnabled = false
+
+                xAxis.apply {
+                    position = XAxis.XAxisPosition.BOTTOM
+                    granularity = 1f
+                    valueFormatter = IndexAxisValueFormatter((1..31).map { it.toString() })
+                    setDrawGridLines(false)
+                }
+
+                axisLeft.apply {
+                    granularity = 1f
+                    axisMinimum = 0f
+                    axisMaximum = 6f 
+                    setDrawGridLines(true)
+                    setDrawLabels(false)
+                }
+                axisRight.isEnabled = false
+                animateY(1500)
             }
-            val dataSet = LineDataSet(entries, "Mood Over Time").apply {
-                setColors(*ColorTemplate.COLORFUL_COLORS)
-                valueTextSize = 12f
-            }
-            data = LineData(dataSet)
-            description.isEnabled = false
-            xAxis.granularity = 1f
-            animateX(1500)
         }
-    }, modifier = Modifier.fillMaxWidth().height(250.dp))
+    )
 }
 
+/*
 @Composable
 fun DoughnutChartComposable() {
     AndroidView(factory = { context ->
         PieChart(context).apply {
             val entries = MoodData.monthlyMoodRecords.groupBy { it.mood }.map { (mood, records) ->
-                PieEntry(records.size.toFloat(), mood.name)
+                PieEntry(records.size.toFloat(), moodLevel)
             }
             val dataSet = PieDataSet(entries, "Mood Distribution").apply {
                 setColors(*ColorTemplate.JOYFUL_COLORS)
@@ -106,7 +128,7 @@ fun DoughnutChartComposable() {
             animateY(1500)
         }
     }, modifier = Modifier.fillMaxWidth().height(250.dp))
-}
+}*/
 
 @Composable
 fun ChartBottomNavigationBar(navController: NavHostController) {

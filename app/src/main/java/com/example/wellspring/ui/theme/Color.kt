@@ -2,6 +2,15 @@ package com.example.wellspring.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val Excited = Color(0xFFFFA340)
+val Happy = Color(0xFFFFD65D)
+val Peace = Color(0xFF3CCD4C)
+val Bored = Color(0xFFB9C5C1)
+val Worried = Color(0xFFC4A8C7)
+val Sad = Color(0xFF45679E)
+
+val bar = Color(0xFFFFD7E3)
+
 object Color {
     val primary = Color(0xFF6750A4)
     val onPrimary = Color(0xFFFFFFFF)
