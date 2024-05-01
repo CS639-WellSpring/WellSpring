@@ -60,7 +60,7 @@ fun SignUpScreen(navController: NavController) {
                 .padding(paddingValues)
                 .padding(horizontal = 42.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
             Headline("Create an Account")
             Spacer(Modifier.height(32.dp))
@@ -136,7 +136,7 @@ fun SignUpWithGoogleButton() {
         modifier = Modifier.fillMaxWidth()
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.google),
+            painter = painterResource(id = R.drawable.ic_google),
             contentDescription = "Sign up with Google",
             modifier = Modifier.size(24.dp),
             tint = androidx.compose.ui.graphics.Color.Unspecified // Display the icon in its original color

@@ -20,7 +20,7 @@ fun AppTheme(
             secondary = Color.secondaryDark,
             onSecondary = Color.onSecondaryDark,
             secondaryContainer = Color.secondaryContainerDark,
-            onSecondaryContainer = Color.onSecondaryContainerDark
+            onSecondaryContainer = Color.onSecondaryContainerDark,
         )
     } else {
         lightColorScheme(

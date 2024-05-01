@@ -43,10 +43,9 @@ fun SignInScreen(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
         Logo()
-        Spacer(Modifier.height(16.dp))
         Headline()
         SupportingText()
         Spacer(Modifier.height(32.dp))
@@ -64,7 +63,7 @@ fun SignInScreen(navController: NavController) {
 
 @Composable
 fun Logo() {
-    val image: Painter = painterResource(id = R.drawable.logo_wellspring)
+    val image: Painter = painterResource(id = R.drawable.ic_wellspring)
     Image(
         painter = image,
         contentDescription = "Logo",
@@ -159,7 +158,7 @@ fun SignInWithGoogleButton() {
             .padding(horizontal = 42.dp)
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.google),
+            painter = painterResource(id = R.drawable.ic_google),
             contentDescription = "Google sign in",
             modifier = Modifier.size(24.dp),
             tint = androidx.compose.ui.graphics.Color.Unspecified // Display the icon in its original color
