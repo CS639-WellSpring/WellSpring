@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.wellspring.test.app-mergeDebugAndroidTestResources-36:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\c8d3dbbcc37b7255cac4e72d4b5de44b\\transformed\\core-1.10.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}
