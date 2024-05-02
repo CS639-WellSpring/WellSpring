@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.wellspring.app-mergeDebugResources-42:/values-da/values-da.xml",
+            "outputFile": "com.example.wellspring.app-mergeDebugResources-48:/values-da/values-da.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\204c071f5ceffafadb1af5c4278ef5cc\\transformed\\ui-1.4.0\\res\\values-da\\values-da.xml",
+                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\c8d3dbbcc37b7255cac4e72d4b5de44b\\transformed\\core-1.10.0\\res\\values-da\\values-da.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,151,253,350,448,555,664,782",
+                        "endColumns": "95,101,96,97,106,108,117,100",
+                        "endOffsets": "146,248,345,443,550,659,777,878"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,26",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,201,303,400,498,605,714,2208",
+                        "endColumns": "95,101,96,97,106,108,117,100",
+                        "endOffsets": "196,298,395,493,600,709,827,2304"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\eca48feadccd6b7c34c6eeaa1851f3e2\\transformed\\ui-release\\res\\values-da\\values-da.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -13,11 +30,11 @@
                         "endOffsets": "192,272,367,466,548,625,714,803,885,950,1015,1096,1180,1250,1328,1395,1515"
                     },
                     "to": {
-                        "startLines": "2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22",
+                        "startLines": "9,10,12,13,15,17,18,19,20,21,22,23,24,25,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,352,447,622,779,856,945,1034,1116,1181,1246,1327,1411,1582,1660,1727",
+                        "startOffsets": "832,924,1079,1174,1349,1506,1583,1672,1761,1843,1908,1973,2054,2138,2309,2387,2454",
                         "endColumns": "91,79,94,98,81,76,88,88,81,64,64,80,83,69,77,66,119",
-                        "endOffsets": "192,272,442,541,699,851,940,1029,1111,1176,1241,1322,1406,1476,1655,1722,1842"
+                        "endOffsets": "919,999,1169,1268,1426,1578,1667,1756,1838,1903,1968,2049,2133,2203,2382,2449,2569"
                     }
                 },
                 {
@@ -30,28 +47,11 @@
                         "endOffsets": "125,201,276"
                     },
                     "to": {
-                        "startLines": "4,7,9",
+                        "startLines": "11,14,16",
                         "startColumns": "4,4,4",
-                        "startOffsets": "277,546,704",
+                        "startOffsets": "1004,1273,1431",
                         "endColumns": "74,75,74",
-                        "endOffsets": "347,617,774"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\zhuowen\\.gradle\\caches\\transforms-3\\54d2751d2b9e48bb8e0175fa03bfc140\\transformed\\core-1.9.0\\res\\values-da\\values-da.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "19",
-                        "startColumns": "4",
-                        "startOffsets": "1481",
-                        "endColumns": "100",
-                        "endOffsets": "1577"
+                        "endOffsets": "1074,1344,1501"
                     }
                 }
             ]

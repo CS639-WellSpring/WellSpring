@@ -2,10 +2,44 @@ package com.example.wellspring.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val Excited = Color(0xFFFFA340)
+val Happy = Color(0xFFFFD65D)
+val Peace = Color(0xFF3CCD4C)
+val Bored = Color(0xFFB9C5C1)
+val Worried = Color(0xFFC4A8C7)
+val Sad = Color(0xFF45679E)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val moodColorMap = mapOf(
+    "excited" to Excited,
+    "happy" to Happy,
+    "peace" to Peace,
+    "bored" to Bored,
+    "worried" to Worried,
+    "sad" to Sad
+)
+
+val barColor = Color(0xFFFFD7E3)
+var holeColor = Color(0x00000000)
+
+object Color {
+    val primary = Color(0xFF6750A4)
+    val onPrimary = Color(0xFFFFFFFF)
+    val primaryContainer = Color(0xFFEADDFF)
+    val onPrimaryContainer = Color(0xFF21005D)
+    val secondary = Color(0xFF625B71)
+    val onSecondary = Color(0xFFFFFFFF)
+    val secondaryContainer = Color(0xFFE8DEF8)
+    val onSecondaryContainer = Color(0xFF1D192B)
+    val surfaceContainer = Color(0xFFF3F0FB)
+
+    val primaryDark = Color(0xFFD0BCFF)
+    val onPrimaryDark = Color(0xFF381E72)
+    val primaryContainerDark = Color(0xFF4F378B)
+    val onPrimaryContainerDark = Color(0xFFEADDFF)
+    val secondaryDark = Color(0xFFCCC2DC)
+    val onSecondaryDark = Color(0xFF332D41)
+    val secondaryContainerDark = Color(0xFF4A4458)
+    val onSecondaryContainerDark = Color(0xFFE8DEF8)
+
+}
+

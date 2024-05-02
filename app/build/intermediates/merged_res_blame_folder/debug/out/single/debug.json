@@ -1,50 +1,78 @@
 [
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_dividing.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\dividing.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_profile_image.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/profile_image.png"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_journal_addphotos.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\journal_addphotos.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_google.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_google.xml"
     },
     {
-        "merged": "com.example.wellspring.app-merged_res-44:/drawable_photo.png.flat",
-        "source": "com.example.wellspring.app-main-46:/drawable/photo.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/xml_backup_rules.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/xml/backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_journal_addmood.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\journal_addmood.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_events_filled.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_events_filled.xml"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_more.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\more.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_image01.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/image01.png"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\xml\\data_extraction_rules.xml"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_mood_outline.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_mood_outline.xml"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\xml\\backup_rules.xml"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_image02.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/image02.png"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_logo.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\logo.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_mood_filled.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_mood_filled.xml"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_backbutton.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\backbutton.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_image03.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/image03.png"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_ic_launcher.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\ic_launcher.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_chart_filled.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_chart_filled.xml"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_logo_wellspring.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\logo_wellspring.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-merged_res-44:\\drawable_google.png.flat",
-        "source": "C:\\Users\\zhuowen\\.gradle\\daemon\\8.0\\com.example.wellspring.app-main-46:\\drawable\\google.png"
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_logo.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_logo.png"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_launcher.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_events_outline.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_events_outline.xml"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_image05.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/image05.png"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_wellspring.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_wellspring.png"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_image04.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/image04.png"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_ic_chart_outline.xml.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/ic_chart_outline.xml"
+    },
+    {
+        "merged": "com.example.wellspring.app-merged_res-50:/drawable_placeholder_image.png.flat",
+        "source": "com.example.wellspring.app-main-52:/drawable/placeholder_image.png"
     }
 ]
