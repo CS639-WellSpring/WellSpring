@@ -1,0 +1,10 @@
+# Gradle files
+.gradle/
+build/
+
+# IDEA files
+.idea/
+
+# Other typical build artifacts
+*.iml
+/out/
