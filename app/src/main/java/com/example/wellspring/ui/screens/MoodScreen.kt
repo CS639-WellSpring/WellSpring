@@ -33,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
-import com.example.wellspring.components.MonthPicker
-import com.example.wellspring.components.MonthPickerDialog
-import com.example.wellspring.components.MoodSelectionSheet
+import com.example.wellspring.ui.components.MonthPicker
+import com.example.wellspring.ui.components.MonthPickerDialog
+import com.example.wellspring.ui.components.MoodSelectionSheet
 import com.example.wellspring.ui.theme.AppTheme
 import java.time.LocalDate
 import java.time.YearMonth
@@ -146,3 +146,4 @@ fun PreviewMoodScreen() {
     val navController = rememberNavController()
     MoodScreen(navController)
 }
+

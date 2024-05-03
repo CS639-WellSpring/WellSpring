@@ -40,6 +40,5 @@ object Color {
     val onSecondaryDark = Color(0xFF332D41)
     val secondaryContainerDark = Color(0xFF4A4458)
     val onSecondaryContainerDark = Color(0xFFE8DEF8)
-
 }
 

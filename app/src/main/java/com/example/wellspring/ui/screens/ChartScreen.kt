@@ -33,8 +33,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
-import com.example.wellspring.components.MonthPicker
-import com.example.wellspring.components.MonthPickerDialog
+import com.example.wellspring.ui.components.MonthPicker
+import com.example.wellspring.ui.components.MonthPickerDialog
 import com.example.wellspring.ui.data.MoodData
 import com.example.wellspring.ui.theme.AppTheme
 import com.example.wellspring.ui.theme.Color.surfaceContainer
@@ -150,8 +150,8 @@ fun BarChartComposable() {
                     BarEntry(record.date.dayOfMonth.toFloat(), moodToInt[record.mood]?.toFloat() ?: 0f)
                 }
                 val dataSet = BarDataSet(entries, "").apply {
-                        color = barColor.toArgb()
-                        valueTextSize = 0f
+                    color = barColor.toArgb()
+                    valueTextSize = 0f
                 }
                 data = BarData(dataSet)
                 description.isEnabled = false
