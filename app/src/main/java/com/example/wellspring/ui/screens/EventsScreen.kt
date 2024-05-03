@@ -40,6 +40,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
 import com.example.wellspring.ui.data.EventData
+import com.example.wellspring.ui.theme.Color.surfaceContainer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -89,7 +90,7 @@ fun EventRow(event: EventItem) {
             .fillMaxWidth()
             .height(108.dp),
         shape = RoundedCornerShape(32.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant
+        color = surfaceContainer
     ) {
         Row(
             modifier = Modifier.fillMaxHeight(),
@@ -147,10 +148,10 @@ fun EventsBottomNavigationBar(navController: NavHostController) {
             onClick = { navController.navigate("mood") }
         )
         NavigationBarItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_chart_outline), contentDescription = "Chart") },
-            label = { Text("Chart") },
+            icon = { Icon(painterResource(id = R.drawable.ic_journal_outline), contentDescription = "Journal") },
+            label = { Text("Journal") },
             selected = false,
-            onClick = { navController.navigate("chart") }
+            onClick = { navController.navigate("journal") }
         )
     }
 }

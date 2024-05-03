@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.NavigationBar
@@ -66,18 +68,17 @@ fun ChartScreen(navController: NavHostController) {
                     title = {
                         MonthPicker(selectedMonth, onMonthClick = { showMonthPicker = true })
                     },
-                    actions = {
-                        IconButton(onClick = { /* TODO: Handle profile click */ }) {
-                            Icon(Icons.Filled.AccountCircle, contentDescription = "Profile")
+                    navigationIcon = {
+                        IconButton(onClick = { navController.popBackStack() }) {
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                         }
                     }
                 )
             },
-            bottomBar = {
-                ChartBottomNavigationBar(navController)
-            }
+
         ) { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
+                Spacer(modifier = Modifier.height(8.dp))
                 BarChartWithContainer(selectedMonth)
                 Spacer(modifier = Modifier.height(24.dp))
                 DoughnutChartWithContainer(selectedMonth)
@@ -139,12 +140,12 @@ fun BarChartComposable() {
         factory = { context ->
             BarChart(context).apply {
                 val moodToInt = mapOf(
-                    "excited" to 6,
-                    "happy" to 5,
-                    "peace" to 4,
-                    "bored" to 3,
-                    "worried" to 2,
-                    "sad" to 1
+                    "Excited" to 6,
+                    "Happy" to 5,
+                    "Peace" to 4,
+                    "Bored" to 3,
+                    "Worried" to 2,
+                    "Sad" to 1
                 )
                 val entries = MoodData.monthlyMoodRecords.map { record ->
                     BarEntry(record.date.dayOfMonth.toFloat(), moodToInt[record.mood]?.toFloat() ?: 0f)
@@ -188,7 +189,6 @@ fun DoughnutChartComposable() {
                     PieEntry(records.size.toFloat(), mood)
                 }
                 val dataSet = PieDataSet(entries, "").apply {
-
                     colors = entries.map { entry ->
                         moodColorMap[entry.label]?.toArgb() ?: android.graphics.Color.BLACK
                     }.toList()
@@ -201,7 +201,6 @@ fun DoughnutChartComposable() {
                 setDrawHoleEnabled(true)
                 holeRadius = 50f
                 transparentCircleRadius = 55f
-
 
                 legend.apply {
                     verticalAlignment = Legend.LegendVerticalAlignment.CENTER
@@ -219,30 +218,6 @@ fun DoughnutChartComposable() {
     )
 }
 
-@Composable
-fun ChartBottomNavigationBar(navController: NavHostController) {
-    val context = LocalContext.current
-    NavigationBar {
-        NavigationBarItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_events_outline), contentDescription = "Events") },
-            label = { Text("Events") },
-            selected = false,
-            onClick = { navController.navigate("events") }
-        )
-        NavigationBarItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_mood_outline), contentDescription = "Mood") },
-            label = { Text("Mood") },
-            selected = false,
-            onClick = { navController.navigate("mood") }
-        )
-        NavigationBarItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_chart_filled), contentDescription = "Chart") },
-            label = { Text("Chart") },
-            selected = true,
-            onClick = { /* Handle Chart click */ }
-        )
-    }
-}
 
 @Preview(showBackground = true)
 @Composable

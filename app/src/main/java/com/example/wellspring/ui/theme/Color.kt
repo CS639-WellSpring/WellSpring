@@ -1,6 +1,7 @@
 package com.example.wellspring.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import com.example.wellspring.R
 
 val Excited = Color(0xFFFFA340)
 val Happy = Color(0xFFFFD65D)
@@ -10,13 +11,22 @@ val Worried = Color(0xFFC4A8C7)
 val Sad = Color(0xFF45679E)
 
 val moodColorMap = mapOf(
-    "excited" to Excited,
-    "happy" to Happy,
-    "peace" to Peace,
-    "bored" to Bored,
-    "worried" to Worried,
-    "sad" to Sad
+    "Excited" to Excited,
+    "Happy" to Happy,
+    "Peace" to Peace,
+    "Bored" to Bored,
+    "Worried" to Worried,
+    "Sad" to Sad
 )
+val moodIconMap = mapOf(
+    "Excited" to R.drawable.ic_excited,
+    "Happy" to R.drawable.ic_happy,
+    "Peace" to R.drawable.ic_peace,
+    "Bored" to R.drawable.ic_bored,
+    "Worried" to R.drawable.ic_worried,
+    "Sad" to R.drawable.ic_sad
+)
+
 
 val barColor = Color(0xFFFFD7E3)
 var holeColor = Color(0x00000000)

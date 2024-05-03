@@ -7,10 +7,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,7 +39,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
 import com.example.wellspring.ui.components.MonthPicker
 import com.example.wellspring.ui.components.MonthPickerDialog
-import com.example.wellspring.ui.components.MoodSelectionSheet
 import com.example.wellspring.ui.theme.AppTheme
 import java.time.LocalDate
 import java.time.YearMonth
@@ -48,6 +51,7 @@ fun MoodScreen(navController: NavHostController) {
     var selectedMonth by remember { mutableStateOf(YearMonth.now()) }
     var showMonthPicker by remember { mutableStateOf(false) }
 
+
     AppTheme {
         Scaffold(
             topBar = {
@@ -56,6 +60,9 @@ fun MoodScreen(navController: NavHostController) {
                         MonthPicker(selectedMonth, onMonthClick = { showMonthPicker = true })
                     },
                     actions = {
+                        IconButton(onClick = { navController.navigate("chart") }) {
+                            Icon(painterResource(id = R.drawable.ic_chart), contentDescription = "Chart")
+                        }
                         IconButton(onClick = { /* Implement Profile click action here if needed */ }) {
                             Icon(Icons.Filled.AccountCircle, contentDescription = "Profile")
                         }
@@ -64,11 +71,30 @@ fun MoodScreen(navController: NavHostController) {
             },
             bottomBar = {
                 MoodBottomNavigationBar(navController)
+            },
+            floatingActionButton = {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    FloatingActionButton(
+                        onClick = { navController.navigate("journal") },
+                        modifier = Modifier.size(40.dp)
+                    ) {
+                        Icon(Icons.Filled.Edit, contentDescription = "Add Journal")
+                    }
+                    Spacer(Modifier.height(20.dp))
+                    FloatingActionButton(
+                        onClick = { showMoodSheet = true },
+                        modifier = Modifier.size(56.dp)
+                    ) {
+                        Icon(Icons.Filled.Add, contentDescription = "Add Mood")
+                    }
+                }
             }
         ) { innerPadding ->
             BodyContent(innerPadding, selectedDate, showMoodSheet, onDateSelected = { date ->
                 selectedDate = date
-                showMoodSheet = true
             })
             if (showMonthPicker) {
                 MonthPickerDialog(selectedMonth, onMonthSelected = { month ->
@@ -81,6 +107,7 @@ fun MoodScreen(navController: NavHostController) {
         }
     }
 }
+
 
 @Composable
 fun BodyContent(
@@ -95,16 +122,10 @@ fun BodyContent(
         Button(onClick = { onDateSelected(LocalDate.now()) }) {
             Text("Select Today")
         }
-        if (showMoodSheet) {
-            MoodSelectionSheet(date = selectedDate, onMoodSelected = { mood ->
-                // Here, add the mood to your database or state management
-                println("Mood selected: $mood on date: $selectedDate")
-            }, onDismiss = {
-                // Handle cleanup here
-            })
+
         }
     }
-}
+
 
 
 @Composable
@@ -124,10 +145,10 @@ fun MoodBottomNavigationBar(navController: NavHostController) {
             onClick = { /* Handle Mood click */ }
         )
         NavigationBarItem(
-            icon = { Icon(painterResource(id = R.drawable.ic_chart_outline), contentDescription = "Chart") },
-            label = { Text("Chart") },
+            icon = { Icon(painterResource(id = R.drawable.ic_journal_outline), contentDescription = "Journal") },
+            label = { Text("Journal") },
             selected = false,
-            onClick = { navController.navigate("chart") }
+            onClick = { navController.navigate("journal") }
         )
     }
 }
