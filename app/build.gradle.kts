@@ -30,6 +30,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -63,6 +64,11 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
+    implementation("androidx.compose.material:material:1.6.6")
+    implementation("com.kizitonwose.calendar:compose:2.5.1")
+    implementation("com.kizitonwose.calendar:view:2.5.1")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.27.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -72,5 +78,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
 
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
 }

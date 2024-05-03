@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.ui.screens.ChartScreen
 import com.example.wellspring.ui.screens.EventsScreen
+import com.example.wellspring.ui.screens.JournalScreen
 import com.example.wellspring.ui.screens.MoodScreen
 import com.example.wellspring.ui.screens.SignInScreen
 import com.example.wellspring.ui.screens.SignUpScreen
@@ -18,6 +19,7 @@ fun AppNavGraph() {
         composable("signup") { SignUpScreen(navController) }
         composable("events") { EventsScreen(navController) }
         composable("mood") { MoodScreen(navController) }
+        composable("journal") { JournalScreen(navController) }
         composable("chart") { ChartScreen(navController) }
     }
 }
