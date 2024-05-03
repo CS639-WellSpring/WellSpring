@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "301418935681",
+    "project_id": "wellspring639",
+    "storage_bucket": "wellspring639.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301418935681:android:56ddf5ed086bb7f8cd6480",
+        "android_client_info": {
+          "package_name": "com.example.wellspring"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOS41JGwzPOLWo_hFSbMiEDiGEMkfhzjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

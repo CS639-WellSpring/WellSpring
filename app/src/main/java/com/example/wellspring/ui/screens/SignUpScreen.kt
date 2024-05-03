@@ -25,6 +25,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -35,10 +39,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(navController: NavController) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -64,10 +74,10 @@ fun SignUpScreen(navController: NavController) {
         ) {
             Headline("Create an Account")
             Spacer(Modifier.height(32.dp))
-            SignUpEmailInput()
-            SignUpPasswordInput(label = "Password")
-            SignUpPasswordInput(label = "Confirm Password")
-            SignUpSubmitButton()
+            SignUpEmailInput(email = email, onEmailChange = { email = it })
+            SignUpPasswordInput(label = "Password", password = password, onPasswordChange = { password = it })
+            SignUpPasswordInput(label = "Confirm Password", password = confirmPassword, onPasswordChange = { confirmPassword = it })
+            SignUpSubmitButton(navController, email, password)
             DividerWithText("OR")
             SignUpWithGoogleButton()
         }
@@ -79,24 +89,22 @@ fun Headline(text: String) {
     Text(text, style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(bottom = 16.dp))
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpEmailInput() {
+fun SignUpEmailInput(email: String, onEmailChange: (String) -> Unit) {
     OutlinedTextField(
-        value = "",
-        onValueChange = {},
+        value = email,
+        onValueChange = onEmailChange,
         label = { Text("Email Address") },
         singleLine = true,
         modifier = Modifier.fillMaxWidth()
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpPasswordInput(label: String) {
+fun SignUpPasswordInput(label: String, password: String, onPasswordChange: (String) -> Unit) {
     OutlinedTextField(
-        value = "",
-        onValueChange = {},
+        value = password,
+        onValueChange = onPasswordChange,
         label = { Text(label) },
         singleLine = true,
         visualTransformation = PasswordVisualTransformation(),
@@ -106,9 +114,21 @@ fun SignUpPasswordInput(label: String) {
 }
 
 @Composable
-fun SignUpSubmitButton() {
+fun SignUpSubmitButton(navController: NavController, email: String, password: String) {
     Button(
-        onClick = { /* Handle sign up */ },
+        onClick = {
+            // Implement user registration with Firebase
+            val auth = Firebase.auth
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Registration successful, navigate to sign-in or main screen
+                        navController.navigate("signin")
+                    } else {
+                        // Handle errors or notify user
+                    }
+                }
+        },
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 16.dp)
