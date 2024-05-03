@@ -1,4 +1,4 @@
-package com.example.wellspring.ui.screens
+package com.example.wellspring.components
 
 import android.app.DatePickerDialog
 import android.content.Context
