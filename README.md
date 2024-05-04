@@ -19,4 +19,4 @@ Click on the link to see the design of the app. [Design](https://nam12.safelinks
 For demo [WellSpring Demo](https://youtu.be/2O-Bx0cxAkc).
 
 ## Final Presentation Link
-For demo [Final Presentation](https://docs.google.com/presentation/d/1CJUekmvlwRt2YOuCAD1Tu11hwnIveUMblN-2sxqS3OU/edit?usp=sharing).
+For Final Presentation [Final Presentation](https://docs.google.com/presentation/d/1CJUekmvlwRt2YOuCAD1Tu11hwnIveUMblN-2sxqS3OU/edit?usp=sharing).
