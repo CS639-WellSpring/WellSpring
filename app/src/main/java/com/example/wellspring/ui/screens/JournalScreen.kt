@@ -7,8 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -23,9 +21,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
 import com.example.wellspring.ui.components.TopAppBarWithMenu
-import com.example.wellspring.ui.data.JournalData
-import com.example.wellspring.ui.data.JournalEntry
-import com.example.wellspring.ui.data.MoodData
+import com.example.wellspring.data.JournalData
+import com.example.wellspring.data.JournalEntry
+import com.example.wellspring.data.MoodData
 import com.example.wellspring.ui.theme.Color.surfaceContainer
 import com.example.wellspring.ui.theme.moodColorMap
 import com.example.wellspring.ui.theme.moodIconMap
@@ -37,7 +35,7 @@ fun JournalScreen(navController: NavHostController) {
     val journalEntries = JournalData.getAllEntries()
 
     Scaffold(
-        topBar = { TopAppBarWithMenu(navController) },
+        topBar = { TopAppBarWithMenu(navController, title = "Journals") },
         bottomBar = { JournalBottomNavigationBar(navController) }
     ) { innerPadding ->
         JournalList(journalEntries = journalEntries, modifier = Modifier.padding(innerPadding))

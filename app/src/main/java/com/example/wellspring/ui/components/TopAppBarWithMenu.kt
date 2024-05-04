@@ -25,11 +25,11 @@ import androidx.compose.material.Icon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarWithMenu(navController: NavHostController) {
+fun TopAppBarWithMenu(navController: NavHostController, title: String) {
     var showMenu by remember { mutableStateOf(false) }
 
     MediumTopAppBar(
-        title = { Text("Your App Name") },
+        title = { Text(title) },
         actions = {
             IconButton(onClick = { showMenu = !showMenu }) {
                 Icon(Icons.Default.MoreVert, contentDescription = "Menu")
@@ -74,5 +74,5 @@ fun TopAppBarWithMenu(navController: NavHostController) {
 @Composable
 fun PreviewTopAppBarWithMenu() {
     val navController = rememberNavController()
-    TopAppBarWithMenu(navController)
+    TopAppBarWithMenu(navController, title = "Screen Name")
 }
