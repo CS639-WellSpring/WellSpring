@@ -1,10 +1,9 @@
 package com.example.wellspring.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -15,24 +14,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -53,13 +44,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
-import com.example.wellspring.ui.calendar.sample.compose.clickable
-import com.example.wellspring.ui.calendar.sample.compose.rememberFirstMostVisibleMonth
-import com.example.wellspring.ui.components.MonthPicker
+import com.example.wellspring.calendar.sample.compose.clickable
 import com.example.wellspring.ui.components.MoodSelectionDialog
 import com.example.wellspring.ui.components.TopAppBarWithMenu
-import com.example.wellspring.ui.data.MoodData
-import com.example.wellspring.ui.data.MoodData.getMoodForDate
+import com.example.wellspring.data.MoodData
 import com.example.wellspring.ui.theme.AppTheme
 import com.example.wellspring.ui.theme.moodColorMap
 import com.kizitonwose.calendar.compose.HorizontalCalendar
@@ -75,26 +63,22 @@ import com.kizitonwose.calendar.sample.compose.SimpleCalendarTitle
 import com.kizitonwose.calendar.sample.shared.displayText
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.Locale
+import androidx.compose.material3.MaterialTheme
+import com.example.wellspring.data.JournalData
+import com.example.wellspring.data.JournalEntry
+import com.example.wellspring.data.MoodRecord
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoodScreen(navController: NavHostController) {
-    var selectedDate by remember { mutableStateOf(LocalDate.now()) }
-    var selectedMonth by remember { mutableStateOf(YearMonth.now()) }
     var showMoodSheet by remember { mutableStateOf(false) }
-    var showMonthPicker by remember { mutableStateOf(false) }
-
+    var selectedDate by remember { mutableStateOf(LocalDate.now()) }
 
     AppTheme {
         Scaffold(
-            topBar = { TopAppBarWithMenu(navController) },
-            bottomBar = {
-                MoodBottomNavigationBar(navController)
-            },
+            topBar = { TopAppBarWithMenu(navController, title = "") },
+            bottomBar = { MoodBottomNavigationBar(navController) },
             floatingActionButton = {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -118,13 +102,23 @@ fun MoodScreen(navController: NavHostController) {
             }
         ) { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
-                CalendarGrid(adjacentMonths = 500L)
+                CalendarGrid(
+                    selectedDate = selectedDate,
+                    onDateSelected = { date ->
+                        println("Selected date updated to: $date")
+                        selectedDate = date
+                    },
+                    adjacentMonths = 500L
+                )
             }
             if (showMoodSheet) {
                 MoodSelectionDialog(
                     showSheet = showMoodSheet,
+                    selectedDate = selectedDate,
                     onClose = { showMoodSheet = false },
-                    onSave = { mood, journalText ->
+                    onSave = { mood, journalText, date ->
+                        MoodData.addMoodRecord(MoodRecord(date, mood))
+                        JournalData.addOrUpdateEntry(JournalEntry(date, journalText))
                         showMoodSheet = false
                     }
                 )
@@ -134,28 +128,30 @@ fun MoodScreen(navController: NavHostController) {
 }
 
 @Composable
-fun CalendarGrid(adjacentMonths: Long = 500) {
+fun CalendarGrid(
+    adjacentMonths: Long = 500,
+    selectedDate: LocalDate,
+    onDateSelected: (LocalDate) -> Unit
+) {
     val currentMonth = remember { YearMonth.now() }
     val startMonth = remember { currentMonth.minusMonths(adjacentMonths) }
     val endMonth = remember { currentMonth.plusMonths(adjacentMonths) }
-    val selections = remember { mutableStateListOf<CalendarDay>() }
     val daysOfWeek = remember { daysOfWeek() }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-    ) {
-        val state = rememberCalendarState(
-            startMonth = startMonth,
-            endMonth = endMonth,
-            firstVisibleMonth = currentMonth,
-            firstDayOfWeek = daysOfWeek.first(),
-        )
-        val coroutineScope = rememberCoroutineScope()
-        val visibleMonth = rememberFirstMostVisibleMonth(state, viewportPercent = 90f)
+    val state = rememberCalendarState(
+        startMonth = startMonth,
+        endMonth = endMonth,
+        firstVisibleMonth = currentMonth,
+        firstDayOfWeek = daysOfWeek.first(),
+    )
+    val coroutineScope = rememberCoroutineScope()
+
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.Transparent)) {
+
         SimpleCalendarTitle(
             modifier = Modifier.padding(vertical = 10.dp, horizontal = 8.dp),
-            currentMonth = visibleMonth.yearMonth,
+            currentMonth = state.firstVisibleMonth.yearMonth,
             goToPrevious = {
                 coroutineScope.launch {
                     state.animateScrollToMonth(state.firstVisibleMonth.yearMonth.previousMonth)
@@ -167,21 +163,22 @@ fun CalendarGrid(adjacentMonths: Long = 500) {
                 }
             },
         )
+        Spacer(Modifier.height(32.dp))
+        MonthHeader(daysOfWeek = daysOfWeek)
+        Spacer(Modifier.height(16.dp))
         HorizontalCalendar(
-            modifier = Modifier.testTag("Calendar"),
             state = state,
             dayContent = { day ->
-                Day(day, isSelected = selections.contains(day)) { clicked ->
-                    if (selections.contains(clicked)) {
-                        selections.remove(clicked)
-                    } else {
-                        selections.add(clicked)
+                Day(
+                    day = day,
+                    isSelected = selectedDate == day.date,
+                    isToday = day.date == LocalDate.now(),
+                    onClick = {
+                        println("Day selected: ${it.date}") // Debug log
+                        onDateSelected(it.date)
                     }
-                }
-            },
-            monthHeader = {
-                MonthHeader(daysOfWeek = daysOfWeek)
-            },
+                )
+            }
         )
     }
 }
@@ -200,18 +197,25 @@ private fun MonthHeader(daysOfWeek: List<DayOfWeek>) {
                 fontSize = 15.sp,
                 text = dayOfWeek.displayText(),
                 fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
 }
 
 @Composable
-private fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
+private fun Day(
+    day: CalendarDay,
+    isSelected: Boolean,
+    isToday: Boolean,
+    onClick: (CalendarDay) -> Unit) {
     val moodColor = remember(day.date) {
         MoodData.getMoodForDate(day.date)?.let { mood ->
             moodColorMap[mood] ?: Color.Transparent
         } ?: Color.Transparent
     }
+
+    val backgroundColor = if (isSelected) MaterialTheme.colorScheme.primary else moodColor
 
     Box(
         modifier = Modifier
@@ -219,16 +223,19 @@ private fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) ->
             .testTag("MonthDay")
             .padding(6.dp)
             .clip(CircleShape)
-            .background(color = moodColor)
+            .background(color = backgroundColor)
+            .then(
+                if (isToday) Modifier.border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                else Modifier
+            )
             .clickable(
                 enabled = day.position == DayPosition.MonthDate,
-                showRipple = !isSelected,
                 onClick = { onClick(day) },
             ),
         contentAlignment = Alignment.Center,
     ) {
         val textColor = when (day.position) {
-            DayPosition.MonthDate -> if (isSelected) Color.White else Color.Unspecified
+            DayPosition.MonthDate -> if (isSelected) MaterialTheme.colorScheme.onPrimary else Color.Unspecified
             DayPosition.InDate, DayPosition.OutDate -> colorResource(R.color.inactive_text_color)
         }
         androidx.compose.material.Text(

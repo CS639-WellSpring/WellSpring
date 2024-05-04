@@ -14,13 +14,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -40,7 +36,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
 import com.example.wellspring.ui.components.TopAppBarWithMenu
-import com.example.wellspring.ui.data.EventData
+import com.example.wellspring.data.EventData
 import com.example.wellspring.ui.theme.Color.surfaceContainer
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +50,7 @@ fun EventsScreen(navController: NavHostController) {
     }
 
     Scaffold(
-        topBar = { TopAppBarWithMenu(navController) },
+        topBar = { TopAppBarWithMenu(navController, title = "Events") },
         bottomBar = { EventsBottomNavigationBar(navController) }
     ) { innerPadding ->
         EventsList(events = EventData.events, modifier = Modifier.padding(innerPadding))

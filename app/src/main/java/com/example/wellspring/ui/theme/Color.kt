@@ -41,6 +41,7 @@ object Color {
     val secondaryContainer = Color(0xFFE8DEF8)
     val onSecondaryContainer = Color(0xFF1D192B)
     val surfaceContainer = Color(0xFFF3F0FB)
+    val onSurface = Color(0xFF212121)
 
     val primaryDark = Color(0xFFD0BCFF)
     val onPrimaryDark = Color(0xFF381E72)
@@ -50,5 +51,6 @@ object Color {
     val onSecondaryDark = Color(0xFF332D41)
     val secondaryContainerDark = Color(0xFF4A4458)
     val onSecondaryContainerDark = Color(0xFFE8DEF8)
+    val onSurfaceDark = Color(0xFFE0E0E0)
 }
 
