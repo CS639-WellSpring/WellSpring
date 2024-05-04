@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
+import com.example.wellspring.ui.components.TopAppBarWithMenu
 import com.example.wellspring.ui.data.JournalData
 import com.example.wellspring.ui.data.JournalEntry
 import com.example.wellspring.ui.data.MoodData
@@ -36,16 +37,7 @@ fun JournalScreen(navController: NavHostController) {
     val journalEntries = JournalData.getAllEntries()
 
     Scaffold(
-        topBar = {
-            MediumTopAppBar(
-                title = { Text("Journals") },
-                actions = {
-                    IconButton(onClick = { /* Handle profile click */ }) {
-                        Icon(Icons.Filled.AccountCircle, contentDescription = "Profile")
-                    }
-                }
-            )
-        },
+        topBar = { TopAppBarWithMenu(navController) },
         bottomBar = { JournalBottomNavigationBar(navController) }
     ) { innerPadding ->
         JournalList(journalEntries = journalEntries, modifier = Modifier.padding(innerPadding))

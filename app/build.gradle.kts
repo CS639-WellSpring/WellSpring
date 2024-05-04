@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -70,6 +71,8 @@ dependencies {
     implementation("com.google.accompanist:accompanist-flowlayout:0.27.0")
     implementation("io.github.boguszpawlowski.composecalendar:composecalendar:1.2.0")
     implementation("androidx.fragment:fragment-ktx:1.7.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

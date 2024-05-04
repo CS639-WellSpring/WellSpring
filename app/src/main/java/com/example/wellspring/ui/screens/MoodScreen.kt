@@ -57,6 +57,7 @@ import com.example.wellspring.ui.calendar.sample.compose.clickable
 import com.example.wellspring.ui.calendar.sample.compose.rememberFirstMostVisibleMonth
 import com.example.wellspring.ui.components.MonthPicker
 import com.example.wellspring.ui.components.MoodSelectionDialog
+import com.example.wellspring.ui.components.TopAppBarWithMenu
 import com.example.wellspring.ui.data.MoodData
 import com.example.wellspring.ui.data.MoodData.getMoodForDate
 import com.example.wellspring.ui.theme.AppTheme
@@ -90,23 +91,7 @@ fun MoodScreen(navController: NavHostController) {
 
     AppTheme {
         Scaffold(
-            topBar = {
-                MediumTopAppBar(
-                    title = {
-                    },
-                    actions = {
-                        IconButton(onClick = { navController.navigate("chart") }) {
-                            Icon(
-                                painterResource(id = R.drawable.ic_chart),
-                                contentDescription = "Chart"
-                            )
-                        }
-                        IconButton(onClick = { /* Implement Profile click action here if needed */ }) {
-                            Icon(Icons.Filled.AccountCircle, contentDescription = "Profile")
-                        }
-                    }
-                )
-            },
+            topBar = { TopAppBarWithMenu(navController) },
             bottomBar = {
                 MoodBottomNavigationBar(navController)
             },
@@ -115,6 +100,14 @@ fun MoodScreen(navController: NavHostController) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.padding(16.dp)
                 ) {
+                    FloatingActionButton(
+                        onClick = { navController.navigate("chart") },
+                        modifier = Modifier.size(40.dp)
+                    ) {
+
+                        Icon(painterResource(id = R.drawable.ic_chart), contentDescription = "View Chart")
+                    }
+                    Spacer(Modifier.height(20.dp))
                     FloatingActionButton(
                         onClick = { showMoodSheet = true },
                         modifier = Modifier.size(56.dp)
@@ -133,20 +126,6 @@ fun MoodScreen(navController: NavHostController) {
                     onClose = { showMoodSheet = false },
                     onSave = { mood, journalText ->
                         showMoodSheet = false
-                    }
-                )
-            }
-            if (showMonthPicker) {
-                MonthPicker(
-                    visible = showMonthPicker,
-                    currentMonth = selectedMonth.monthValue - 1,
-                    currentYear = selectedMonth.year,
-                    confirmButtonClicked = { month, year ->
-                        selectedMonth = YearMonth.of(year, month)
-                        showMonthPicker = false
-                    },
-                    cancelClicked = {
-                        showMonthPicker = false
                     }
                 )
             }
