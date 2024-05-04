@@ -22,13 +22,22 @@ object JournalData {
     )
 
     fun addOrUpdateEntry(entry: JournalEntry) {
-        val existing = entries.find { it.date == entry.date }
-        if (existing != null) {
-            existing.text = entry.text
+        if (isValidEntry(entry)) {
+            val existing = entries.find { it.date == entry.date }
+            if (existing != null) {
+                existing.text = entry.text
+            } else {
+                entries.add(entry)
+            }
         } else {
-            entries.add(entry)
+            println("Invalid journal entry: ${entry.text} on ${entry.date}")
         }
     }
 
     fun getAllEntries(): List<JournalEntry> = entries.toList()
+
+    private fun isValidEntry(entry: JournalEntry): Boolean {
+        return entry.text.isNotEmpty() && !entry.date.isAfter(LocalDate.now())
+    }
 }
+
