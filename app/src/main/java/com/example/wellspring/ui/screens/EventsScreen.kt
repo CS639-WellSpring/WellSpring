@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
+import com.example.wellspring.ui.components.TopAppBarWithMenu
 import com.example.wellspring.ui.data.EventData
 import com.example.wellspring.ui.theme.Color.surfaceContainer
 
@@ -53,18 +54,7 @@ fun EventsScreen(navController: NavHostController) {
     }
 
     Scaffold(
-        topBar = {
-            if (shouldShowAppBar.value) {
-                MediumTopAppBar(
-                    title = { Text("Events") },
-                    actions = {
-                        IconButton(onClick = { /* Handle profile click */ }) {
-                            Icon(Icons.Filled.AccountCircle, contentDescription = "Profile")
-                        }
-                    }
-                )
-            }
-        },
+        topBar = { TopAppBarWithMenu(navController) },
         bottomBar = { EventsBottomNavigationBar(navController) }
     ) { innerPadding ->
         EventsList(events = EventData.events, modifier = Modifier.padding(innerPadding))

@@ -10,25 +10,34 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.example.wellspring.R
-import com.example.wellspring.ui.data.JournalData
-import com.example.wellspring.ui.data.JournalEntry
-import com.example.wellspring.ui.data.MoodData
-import com.example.wellspring.ui.data.MoodRecord
 import com.example.wellspring.ui.theme.moodColorMap
 import com.example.wellspring.ui.theme.moodIconMap
-import java.time.LocalDate
 
 @Composable
-fun MoodSelectionSheet(
+fun MoodSelectionDialog(
+    showSheet: Boolean,
+    onClose: () -> Unit,
+    onSave: (String, String) -> Unit
+) {
+    if (showSheet) {
+        Dialog(onDismissRequest = onClose) {
+            MoodSelectionContent(onClose = onClose, onSave = onSave)
+        }
+    }
+}
+
+@Composable
+fun MoodSelectionContent(
     onClose: () -> Unit,
     onSave: (String, String) -> Unit
 ) {
     var selectedMood by remember { mutableStateOf<String?>(null) }
     var journalText by remember { mutableStateOf("") }
-    val today = LocalDate.now()
 
     Card(modifier = Modifier.padding(16.dp), elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -53,9 +62,8 @@ fun MoodSelectionSheet(
                 onValueChange = { journalText = it },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp)  // Larger height for the text field
-                    .padding(vertical = 8.dp),
-                singleLine = false,
+                    .height(140.dp)
+                    .padding(8.dp),
                 textStyle = MaterialTheme.typography.bodyLarge.copy(color = Color.Black),
                 decorationBox = { innerTextField ->
                     if (journalText.isEmpty()) {
@@ -71,7 +79,7 @@ fun MoodSelectionSheet(
             ) {
                 Button(
                     onClick = onClose,
-                    colors = ButtonDefaults.outlinedButtonColors()  // Use outlined style for the Cancel button
+                    colors = ButtonDefaults.outlinedButtonColors()
                 ) {
                     Text("Cancel")
                 }
@@ -80,12 +88,9 @@ fun MoodSelectionSheet(
                     onClick = {
                         selectedMood?.let { mood ->
                             onSave(mood, journalText)
-                            MoodData.addMoodRecord(MoodRecord(today, mood))
-                            JournalData.addOrUpdateEntry(JournalEntry(today, journalText))
                             onClose()
                         }
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    }
                 ) {
                     Text("Save")
                 }
@@ -108,7 +113,7 @@ fun MoodButton(
     IconButton(
         onClick = { onSelectionChanged(mood) },
         modifier = Modifier
-            .size(54.dp)
+            .size(51.dp)
             .background(color = backgroundColor, shape = CircleShape)
     ) {
         Icon(
@@ -121,12 +126,20 @@ fun MoodButton(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewMoodSelectionSheet() {
-    MoodSelectionSheet(
-        onClose = {},  // Mock close action
-        onSave = { mood, text -> println("Mood: $mood, Text: $text") }
+fun PreviewMoodSelectionSheetDialog() {
+    val context = LocalContext.current
+
+    val onSave: (String, String) -> Unit = { mood, journalText ->
+        println("Mood: $mood, Journal: $journalText")
+    }
+
+    MoodSelectionDialog(
+        showSheet = true,
+        onClose = {},
+        onSave = onSave
     )
 }
+
 
 
 

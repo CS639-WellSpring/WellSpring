@@ -36,7 +36,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
 import com.example.wellspring.ui.components.MonthPicker
-import com.example.wellspring.ui.components.MonthPickerDialog
+import com.example.wellspring.ui.components.MonthPicker
 import com.example.wellspring.ui.data.MoodData
 import com.example.wellspring.ui.theme.AppTheme
 import com.example.wellspring.ui.theme.Color.surfaceContainer
@@ -65,9 +65,7 @@ fun ChartScreen(navController: NavHostController) {
         Scaffold(
             topBar = {
                 MediumTopAppBar(
-                    title = {
-                        MonthPicker(selectedMonth, onMonthClick = { showMonthPicker = true })
-                    },
+                    title = { },
                     navigationIcon = {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
@@ -83,14 +81,7 @@ fun ChartScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(24.dp))
                 DoughnutChartWithContainer(selectedMonth)
             }
-            if (showMonthPicker) {
-                MonthPickerDialog(selectedMonth, onMonthSelected = { month ->
-                    selectedMonth = month
-                    showMonthPicker = false
-                }, onDismiss = {
-                    showMonthPicker = false
-                })
-            }
+
         }
     }
 }

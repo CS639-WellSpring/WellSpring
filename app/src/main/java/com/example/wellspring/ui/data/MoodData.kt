@@ -64,6 +64,9 @@ object MoodData {
     fun getMood(date: LocalDate): MoodRecord? {
         return _monthlyMoodRecords.find { it.date == date }
     }
+    fun getMoodForDate(date: LocalDate): String? {
+        return monthlyMoodRecords.find { it.date == date }?.mood
+    }
     fun getRecordsForMonth(yearMonth: YearMonth): List<MoodRecord> {
         return _monthlyMoodRecords.filter {
             YearMonth.from(it.date) == yearMonth

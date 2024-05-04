@@ -23,6 +23,10 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -34,10 +38,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.wellspring.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 
 @Composable
 fun SignInScreen(navController: NavController) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -49,11 +57,11 @@ fun SignInScreen(navController: NavController) {
         Headline()
         SupportingText()
         Spacer(Modifier.height(32.dp))
-        EmailInput()
+        EmailInput(email, onEmailChange = { email = it })
         Spacer(Modifier.height(16.dp))
-        PasswordInput()
+        PasswordInput(password, onPasswordChange = { password = it })
         Spacer(Modifier.height(24.dp))
-        SignInButton {navController.navigate("mood")}
+        SignInButton(navController, email, password) { navController.navigate("mood") }
         SignUpButton {navController.navigate("signup")}
         DividerWithText()
         SignInWithGoogleButton()
@@ -81,38 +89,47 @@ fun SupportingText() {
     Text("with your Wellspring Account", style = MaterialTheme.typography.bodyLarge)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmailInput() {
+fun EmailInput(email: String, onEmailChange: (String) -> Unit) {
     OutlinedTextField(
-        value = "",
-        onValueChange = {},
+        value = email,
+        onValueChange = onEmailChange,
         label = { Text("Email Address") },
         singleLine = true,
-        modifier = Modifier.padding(horizontal = 42.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 42.dp),
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordInput() {
+fun PasswordInput(password: String, onPasswordChange: (String) -> Unit) {
     OutlinedTextField(
-        value = "",
-        onValueChange = {},
+        value = password,
+        onValueChange = onPasswordChange,
         label = { Text("Enter your password") },
         singleLine = true,
-        modifier = Modifier.padding(horizontal = 42.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 42.dp),
         visualTransformation = PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { /* Handle the action here */ })
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
     )
 }
 
 @Composable
-fun SignInButton(onSignInClick: () -> Unit) {
+fun SignInButton(navController: NavController, email: String, password: String, onClick: () -> Unit) {
     Button(
-        onClick = onSignInClick,
+        onClick = {
+            // Implement user sign-in with Firebase
+            val auth = Firebase.auth
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Sign-in successful, navigate to main app screen
+                        navController.navigate("mood")
+                    } else {
+                        // Handle errors or notify user
+                    }
+                }
+        },
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 42.dp)
