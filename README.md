@@ -15,3 +15,8 @@ For more details on the initial project idea, please refer to our [Idea Proposal
 ## Design
 Click on the link to see the design of the app. [Design](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fl12iUeRskif1RkAYGRFmC7%2FWellSpring%3Ftype%3Ddesign%26node-id%3D25%253A5502%26mode%3Ddesign%26t%3DsqX2pP4x1l6w1ueK-1&data=05%7C02%7Czm95588n%40pace.edu%7C43aec827b54742d3c48208dc615347a1%7C0799c53eca9a49e88901064a6412a41d%7C0%7C0%7C638492257648746642%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=rGYc%2B%2F%2Be86EklucDtL%2FIqBjWYJylSeCCvT2i4yosK9o%3D&reserved=0).
 
+## Video Link
+For demo [WellSpring Demo](https://youtu.be/2O-Bx0cxAkc).
+
+## Final Presentation Link
+For demo [Final Presentation](https://docs.google.com/presentation/d/1CJUekmvlwRt2YOuCAD1Tu11hwnIveUMblN-2sxqS3OU/edit?usp=sharing).
